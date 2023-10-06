@@ -5,18 +5,17 @@
 // the results in the console as it was returned.
 
 export function sortCars(inventory){
-    inventory.sort(function(a, b) {
-        let modelA = a.car_model.toLowerCase();
-        let modelB = b.car_model.toLowerCase(); 
-        if (modelA < modelB) {
-            return -1;
+    for(let i=0;i<inventory.length;i++){
+        for(let j=0;j<inventory.length-i-1;j++){
+            const modelA = inventory[i].car_model.toLowerCase();
+            const modelB = inventory[j].car_model.toLowerCase();
+            if(modelA > modelB){
+                const temp = inventory[j];
+                inventory[j] = inventory[j + 1];
+                inventory[j+1] = temp;
+            }
         }
-        if (modelA > modelB) {
-            return 1;
-        }
-        return 0;
-    });
-
+    }
     return inventory;
 }
 
